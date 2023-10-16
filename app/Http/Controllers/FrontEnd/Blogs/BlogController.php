@@ -136,17 +136,11 @@ class BlogController extends Controller
     $subCategory->title = $request->title;
     $subCategory->slug = uniqid(Str::slug($request->title));
     
-    if ($request->file('image')) {
-
-            $image = $request->file('image');
-            $extension = $image->getClientOriginalExtension();
-            $filename = 'blog' . time() . '.' . $extension;
-            
-            $path = $image->storeAs('blogs', $filename, 'public');
-            $imageUrl = env('APP_URL').'/storage/'.$path;
-            $subCategory->image = $imageUrl;
-            
-      }  
+    if ($request->hasFile('image')) {
+      $filePath = env('APP_URL') .'storage/'. $request->image->storeAs('blogs', $request->image->getClientOriginalName(),'public');
+      $subCategory->image = $filePath;
+    }
+   
       
     $subCategory->author = Auth::user()->name;
     $subCategory->blog_categorie_id = $request->category;

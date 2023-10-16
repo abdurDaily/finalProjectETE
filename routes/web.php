@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ApprovalController;
 use App\Http\Controllers\Backend\Balance\BalanceController;
+use App\Http\Controllers\Backend\SecondaryHomeController;
 use App\Models\BlogSubCategory;
 
 /*
@@ -28,7 +29,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('check');
+Route::get('/home', [SecondaryHomeController::class, 'homeIndex'])->name('home')->middleware('check');
 Route::get('/account/general-report', [App\Http\Controllers\HomeController::class, 'report'])->name('general.report')->middleware('check');
 Route::get('/waite', [App\Http\Controllers\HomeController::class, 'waite'])->name('waite');
 
@@ -58,3 +59,13 @@ Route::middleware('check')->prefix('/account')->group(function(){
 //Route::get('/invoice', [BalanceController::class, 'invoice'])->name('invoice.index')->middleware('check');
 
 Route::get('/generate-pdf',[BalanceController::class,'generate_pdf'])->name('invoice.index')->middleware('check');
+
+
+
+/**
+ * SECONDARY HOME 
+ */
+Route::middleware('check')->prefix('/dashbord')->group(function(){
+
+  Route::get('./index', [SecondaryHomeController::class, 'homeIndex'])->name('dashbord.index');
+});

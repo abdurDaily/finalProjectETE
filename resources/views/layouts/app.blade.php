@@ -10,7 +10,7 @@
         <meta name="author" content="LEFT4CODE">
         @stack('niceSelect2CSS')
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <title>Admin Dashboard </title>
+        <title>Admin Dashboard</title>
         {{-- PAGINATION  --}}
         @stack('pagination')
         <!-- BEGIN: CSS Assets-->
@@ -498,6 +498,8 @@
                     <!-- END: Account Menu -->
                 </div>
                 <!-- END: Top Bar -->
+
+             
 
                {{-- GENERAL REPORT --}}
                @yield('general-report')
